@@ -23,11 +23,12 @@ int main(){
 
 void iceCreamReport(int iceCreamScoops[],std::string iceCreamFlavors[]){
         
+        int minOne, minTwo, maxOne, maxTwo,totalScoops;
         for (int i = 0;i<5;i++){
 std::cout<<iceCreamFlavors[i] <<" has " << iceCreamScoops[i] << " scoops"<<std::endl;
+totalScoops+= iceCreamScoops[i];
         }
-        int minOne, minTwo, maxOne, maxTwo;
-
+    std::cout<<"Total Scoops Sold: "<<totalScoops<<std::endl;
     
     //could use max() but we need position
     //     int min = iceCreamScoops[0], max = iceCreamScoops[0];
@@ -74,8 +75,8 @@ std::cout<<iceCreamFlavors[i] <<" has " << iceCreamScoops[i] << " scoops"<<std::
 
 
 
-        std::cout<<"The 2 worst selling are "<< iceCreamFlavors[minOne]<< " with " << iceCreamScoops[minOne] << " scoops and "<< iceCreamFlavors[minTwo]<< " with " << iceCreamScoops[minTwo]<<std::endl;
-        std::cout<<"The 2 best selling are "<< iceCreamFlavors[maxOne]<< " with " << iceCreamScoops[maxOne] << " scoops and "<< iceCreamFlavors[maxTwo]<< " with " << iceCreamScoops[maxTwo]<<std::endl;
+        std::cout<<"The 2 worst selling are "<< iceCreamFlavors[minOne]<< " with " << iceCreamScoops[minOne] << " scoops and "<< iceCreamFlavors[minTwo]<< " with " << iceCreamScoops[minTwo]<<" scoops"<<std::endl;
+        std::cout<<"The 2 best selling are "<< iceCreamFlavors[maxOne]<< " with " << iceCreamScoops[maxOne] << " scoops and "<< iceCreamFlavors[maxTwo]<< " with " << iceCreamScoops[maxTwo]<<" scoops"<<std::endl;
 
 
 }
