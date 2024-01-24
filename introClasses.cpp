@@ -1,8 +1,9 @@
 //Abdulaziz Jamaleddin
 //Kim M
 
-#include <iostream>
 
+#include <iostream>
+// #include <cstring> 
 // struct Pet
 // {
 //     std::string name; 
@@ -23,11 +24,13 @@ class Pet
     public:
     //Constructor
 Pet(std::string name){ //non default constructor
+    std::cout<<"made pet with data";
     this->name = name;
 
 }
 //default constuctor
 Pet(){
+    std::cout<<"made pet without data";
     this->name = "Unknown";
     this->type = "Unknown";
     this->birthMonth = 0;
@@ -57,6 +60,9 @@ std::cout<<"My pet's is a "<<type<<"\n";
 std::cout<<"\n"<<"My pet is born on  "<<birthMonth<<"/"<<birthDay<<"/"<<birthYear;
     }
 
+    std::string getString(){
+        return "\n My pet's name is " +name+ "\n" + "\n" + std::to_string(birthDay) ;
+    }
 };//END OF PET CLASS
 
 
@@ -85,11 +91,28 @@ int main(){
  yourPet.setBirthDay(11);
  yourPet.setBirthYear(2004);
  yourPet.displayPetFunction();
+ std::string returnedString;
+ returnedString = yourPet.getString();
+ std::cout<<returnedString;
 // yourPet.printName();
 // std::cout<<"My pet's name is "<<yourPet.getName()<<"\n";
 // std::cout<<"My pet's is a "<<yourPet.getType()<<"\n";
 // std::cout<<"\n"<<"My pet is born on  "<<yourPet.getBirthMonth()<<"/"<<yourPet.getBirthDay()<<"/"<<yourPet.getBirthYear();
 // std::cout<<"\n"<<"My pet is born on  "<<myPet.getBirthMonth()<<"/"<<myPet.getBirthDay()<<"/"<<myPet.getBirthYear();
+
+Pet allPets[3];
+allPets[0]=yourPet;
+allPets[1]=myPet;
+for (int x;x<3;x++){
+    allPets[x].displayPetFunction();
+};
+std::cout<<"\nDIVIDER"<<std::endl;
+
+
+for(Pet onePet : allPets){
+    onePet.displayPetFunction();
+};
+
 
 
     return 0;
