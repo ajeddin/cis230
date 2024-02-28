@@ -34,7 +34,7 @@ class Car{
     
     int getYear(){ return year; }
     std::string getMake(){ return make;}
-    std::string getModel(){ return model;} 
+    std::string getModel(){ return model;}
     float getSpeed(){ return speed; }
     float getGallons(){ return gallons; }
     bool getStatus(){ return isOn; }
@@ -92,15 +92,7 @@ class Car{
 
 
     }
-    void decGallons(){
-        if (gallons<.5 && isOn){
-gallons-=.5;
-        }
-        else{
-            isOn = false;
-            std::cout<<"Car off";
-        }
-    }
+
 
     void fillUp()
     {
@@ -125,24 +117,16 @@ gallons-=.5;
 
     }
 
-    void startCar()
-    {
-
-        if(gallons == 0)
-        {
-            std::cout<<"Fill up your car";
-        }
-        else
-        {
-            isOn = true;
-           
    
+    void startCar() {
+        if (gallons == 0) {
+            std::cout << "Fill up your car";
+        } else {
+            isOn = true;
 
+            std::thread fuelUpdateThread([this]() { this->updateFuelLevel(); });
+            fuelUpdateThread.detach();
         }
-
-
-
-
     }
     void shutOff()
     {
@@ -151,30 +135,19 @@ gallons-=.5;
             std::cout<<"Come tot a stop before shutting off car";
 
         }
-        else 
+        else
         {
                 isOn = false;
 
         }}
-     void consumeGas() {
-        while (true) {
-            // Sleep for 1000 milliseconds
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-
-            if (isOn) {
-                // Decrease gas by 0.05 every second
-                gallons -= 0.05;
-
-                // If gas is less than 0.05, turn off the car
-                if (gallons < 0.05) {
-                    isOn = false;
-                    speed = 0;
-                    std::cout << "Out of gas. Car turned off.\n";
-                    break;
-                }
-            }
-        }
-    }
+         
+    void updateFuelLevel() {
+         while (isOn) {
+             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+             gallons -= 0.05;
+             std::cout << "\nFuel level decreased by 0.05 gallons. Current fuel level: " << gallons << " gallons";
+         }
+     }
 
 };
 
@@ -183,11 +156,6 @@ int main(){
     int choice;
 
     Car myCar(2023, "Ford", "Explorer");
-    // std::cout<<"My car model is "<<myCar.getModel()<<" by "<<myCar.getMake()<<" it was produced in "<<myCar.getYear();
-    // std::cout<<"\nMy car current miles are "<<myCar.getGallons()<<" and current speed is "<<myCar.getSpeed();
-    auto startTime = std::chrono::steady_clock::now();  // Use auto to deduce the type
-    auto currentTime = std::chrono::steady_clock::now();
-    auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - startTime).count();
 
     do{
     std::cout<<"\nMy car model is "<<myCar.getModel()<<" by "<<myCar.getMake()<<" it was produced in "<<myCar.getYear();
@@ -200,14 +168,6 @@ int main(){
         {
             case 1:
                myCar.startCar();
-
-                startTime = std::chrono::steady_clock::now();  // Update the start time after starting the car
-                currentTime = std::chrono::steady_clock::now();
-                elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - startTime).count();
-
-                if (elapsedTime >= 1) {
-                    myCar.decGallons();
-                }
 
                 break;
 
