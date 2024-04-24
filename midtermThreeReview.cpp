@@ -81,7 +81,7 @@ public:
     void calculateCost(){
         int total =0;
         total +=chosenHotel.getCost()*5;
-        for(Attraction aAttraction: allAttractions){
+        2(Attraction aAttraction: allAttractions){
             total+=aAttraction.getCost()*float(totalPeople);
             
         }

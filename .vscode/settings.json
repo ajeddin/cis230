@@ -58,6 +58,9 @@
     "future": "cpp",
     "__memory": "cpp",
     "type_traits": "cpp",
-    "execution": "cpp"
+    "execution": "cpp",
+    "__tree": "cpp",
+    "map": "cpp",
+    "set": "cpp"
   }
 }
